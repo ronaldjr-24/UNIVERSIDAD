@@ -1,30 +1,23 @@
-def bubble_sort(matriz):
+def bubble_sort_fila(matriz, fila):
     """
-    Función que implementa el algoritmo Bubble Sort para ordenar una matriz bidimensional.
+    Función que implementa el algoritmo Bubble Sort para ordenar una fila específica de una matriz bidimensional.
 
     Args:
-    - matriz: La matriz bidimensional que se desea ordenar.
+    - matriz: La matriz bidimensional en la que se desea ordenar la fila.
+    - fila: El índice de la fila que se desea ordenar.
 
     Returns:
-    - La matriz ordenada.
+    - La matriz con la fila especificada ordenada en orden ascendente.
     """
-    # Convertir la matriz a una lista de listas para facilitar el ordenamiento
-    lista = [elemento for fila in matriz for elemento in fila]
-
-    # Aplicar Bubble Sort
-    n = len(lista)
+    # Aplicar Bubble Sort a la fila especificada
+    n = len(matriz[fila])
     for i in range(n):
-        for j in range(0, n - i - 1):
-            if lista[j] > lista[j + 1]:
-                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+        for j in range(0, n-i-1):
+            if matriz[fila][j] > matriz[fila][j+1]:
+                matriz[fila][j], matriz[fila][j+1] = matriz[fila][j+1], matriz[fila][j]
+    return matriz
 
-    # Convertir la lista ordenada nuevamente a una matriz bidimensional
-    matriz_ordenada = [lista[i:i + len(matriz[0])] for i in range(0, len(lista), len(matriz[0]))]
-
-    return matriz_ordenada
-
-
-# Matriz
+# Matriz de ejemplo
 matriz = [
     [9, 5, 3],
     [2, 7, 1],
@@ -36,14 +29,13 @@ print("Matriz original:")
 for fila in matriz:
     print(fila)
 
-# Ordenar la matriz utilizando Bubble Sort
-matriz_ordenada = bubble_sort(matriz)
+# Índice de la fila que se desea ordenar (por ejemplo, la primera fila tiene índice 0)
+fila_a_ordenar = 0
 
-# Mostrar la matriz ordenada
-print("\nMatriz ordenada:")
-for fila in matriz_ordenada:
+# Ordenar la fila especificada utilizando Bubble Sort
+matriz_con_fila_ordenada = bubble_sort_fila(matriz, fila_a_ordenar)
+
+# Mostrar la matriz con la fila ordenada
+print("\nMatriz con la fila ordenada:")
+for fila in matriz_con_fila_ordenada:
     print(fila)
-
-
-
-
